@@ -139,7 +139,7 @@ class UserRepository extends BaseRepository
                 'user_id'           => $apiUser->id,
                 'lat'               => isset($input['lat']) ? $input['lat'] : NULL,
                 'long'              => isset($input['long']) ? $input['long'] : NULL,
-                'profile_picture'   => 'default.png'
+                'profile_picture'   => isset($input['profile_picture']) ? $input['profile_picture'] : 'default.png'
             ];
 
             $userMeta->create($userMetaData);

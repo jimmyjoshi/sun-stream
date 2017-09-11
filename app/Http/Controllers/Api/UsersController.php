@@ -84,7 +84,18 @@ class UsersController extends Controller
 
     public function register(Request $request)
     {
-        $status = $this->repository->signup($request->all());
+        $input = $request->all();
+
+        if($request->file('image'))
+        {
+            
+            $imageName  = rand(11111, 99999) . '_profile-pic.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->move(base_path() . '/public/profile-pictures/', $imageName);
+
+            $input = array_merge($input, ['profile_picture' => $imageName]);
+        }
+
+        $status = $this->repository->signup($input);
 
         if($status)
         {
