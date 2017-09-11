@@ -3,6 +3,7 @@
 namespace App\Repositories\Backend\Access\User;
 
 use App\Models\Access\User\User;
+use App\Models\Access\User\UserMeta;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -106,6 +107,59 @@ class UserRepository extends BaseRepository
 
         // active() is a scope on the UserScope trait
         return $dataTableQuery->active($status);
+    }
+
+    public function signup($input)
+    {
+
+        $validateRequest = $this->validateApiUser($input);
+
+        if($validateRequest)
+        {
+            return false;
+        }
+
+        $user = new User;
+        
+        $userData = array(
+            'name'      => isset($input['name']) ? $input['name'] : 'Default User',
+            'email'     => $input['email'],
+            'password'  => bcrypt($input['password']),
+            'status'    => 1,
+            'confirmed' => 1
+        );
+
+        $apiUser = $user->create($userData);
+
+        if($apiUser)
+        {
+            $userMeta = new UserMeta();
+
+            $userMetaData = [
+                'user_id'           => $apiUser->id,
+                'lat'               => isset($input['lat']) ? $input['lat'] : NULL,
+                'long'              => isset($input['long']) ? $input['long'] : NULL,
+                'profile_picture'   => 'default.png'
+            ];
+
+            $userMeta->create($userMetaData);
+            return $apiUser;
+        }
+
+        return false;
+    }
+
+    /**
+     * Validate ApiUser
+     * 
+     * @param array $input
+     * @return bool
+     */
+    public function validateApiUser($input)
+    {
+        $user = self::MODEL;
+        $user = new $user();
+        return $user->where(['email' => $input['email']])->first();
     }
 
     /**
