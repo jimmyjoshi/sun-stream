@@ -33,4 +33,14 @@ class AdminController extends Controller
             'repository' => $this->repository
         ]);
     }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function loginMapHistory()
+    {
+        return view('backend.admin.login-map')->with([
+            'repository' => $this->repository
+        ]);
+    }
 }

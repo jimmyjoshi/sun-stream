@@ -6,7 +6,7 @@ use App\Models\Event\Event;
 use App\Models\System\Session;
 use App\Models\Access\User\SocialLogin;
 use App\Models\Access\User\UserMeta;
-
+use App\Models\Access\User\UserLoginTrack;
 
 /**
  * Class UserRelationship.
@@ -54,4 +54,15 @@ trait UserRelationship
     {
         return $this->hasOne(UserMeta::class);
     }    
+
+
+    /**
+     * User Login Track
+     * 
+     * @return HasMany
+     */
+    public function user_login_track()
+    {
+        return $this->hasMany(UserLoginTrack::class);
+    }
 }

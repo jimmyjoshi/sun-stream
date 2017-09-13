@@ -73,9 +73,16 @@
             @endauth
 
             <li class="{{ active_class(Active::checkUriPattern('admin/signup-google-map')) }}">
-                <a href="{{ route('admin.map.index') }}">
+                <a href="{{ route('admin.map.signup-google-map') }}">
                     <i class="fa fa-circle-o"></i>
                     <span>User Signup World Wide</span>
+                </a>
+            </li>
+
+            <li class="{{ active_class(Active::checkUriPattern('admin/login-google-map')) }}">
+                <a href="{{ route('admin.map.login-google-map') }}">
+                    <i class="fa fa-circle-o"></i>
+                    <span>User Login World Wide</span>
                 </a>
             </li>
 
