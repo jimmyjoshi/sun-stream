@@ -19,8 +19,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuthExceptions\JWTException;
 use Auth;
 use App\Repositories\Backend\Access\User\UserRepository;
+use App\Http\Controllers\Api\BaseApiController;
 
-class UsersController extends Controller 
+class UsersController extends BaseApiController
 {
     protected $userTransformer;
     /**
@@ -80,6 +81,19 @@ class UsersController extends Controller
 
         // if no errors are encountered we can return a JWT
         return response()->json($responseData);
+    }
+
+    /**
+     * Version Manager
+     * 
+     * @return json
+     */
+    public function versionManager()
+    {
+        return $this->successResponse([
+            'version_name' => 1.0,
+            'version_code' => 1
+        ]);
     }
 
     public function register(Request $request)

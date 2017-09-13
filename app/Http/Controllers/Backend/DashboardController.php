@@ -16,4 +16,9 @@ class DashboardController extends Controller
     {
         return view('backend.dashboard');
     }
+
+    public function signupMap()
+    {
+    	die('xx');
+    }
 }

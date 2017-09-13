@@ -72,6 +72,13 @@
             </li>
             @endauth
 
+            <li class="{{ active_class(Active::checkUriPattern('admin/signup-google-map')) }}">
+                <a href="{{ route('admin.map.index') }}">
+                    <i class="fa fa-circle-o"></i>
+                    <span>User Signup World Wide</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('admin/log-viewer*')) }} treeview">
                 <a href="#">
                     <i class="fa fa-list"></i>

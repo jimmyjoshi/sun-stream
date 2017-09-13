@@ -21,6 +21,7 @@ Route::group(['namespace' => 'Api',], function ()
 {
     Route::post('login', 'UsersController@login')->name('api.login');
     Route::post('register', 'UsersController@register')->name('api.register');
+    Route::any('version-manager', 'UsersController@versionManager')->name('api.version-manager');
     /*Route::post('register', 'UsersController@register')->name('api.register');
     Route::post('verifyotp', 'UsersController@verifyOtp')->name('api.verifyotp');
     Route::post('resendotp', 'UsersController@resendOtp')->name('api.resendotp');
