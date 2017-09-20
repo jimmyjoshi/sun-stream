@@ -96,6 +96,33 @@ class UsersController extends BaseApiController
         ]);
     }
 
+    /**
+     * Track Activity
+     *
+     * @param Request $request
+     * @return json
+     */
+    public function trackActivity(Request $request)
+    {
+        $user   = $this->getAuthenticatedUser();
+        $status = $this->repository->trackUserActivity($user, $request->all());
+
+        if($status)
+        {
+            $responseData = [
+                    'success' => 'User Activity Tracked Successfully.'
+            ];
+
+            return $this->successResponse($responseData, 'Activity Logged Successfully');
+        }
+
+        $error = [
+            'reason' => 'User Not Found or Unable to Track Activity'
+        ];
+
+        return $this->setStatusCode(400)->failureResponse($error, 'Unable to track User Activity !');
+    }
+
     public function register(Request $request)
     {
         $input = $request->all();

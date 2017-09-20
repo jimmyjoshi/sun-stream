@@ -34,8 +34,15 @@ Route::group(['namespace' => 'Api',], function ()
 
 Route::group(['namespace' => 'Api', 'middleware' => 'jwt.customauth'], function () 
 {
+    Route::post('user/track-activity', 'UsersController@trackActivity')->name('user.track-activity');
+
     Route::get('events', 'APIEventsController@index')->name('events.index');
     Route::post('events/create', 'APIEventsController@create')->name('events.create');
     Route::post('events/edit', 'APIEventsController@edit')->name('events.edit');
     Route::post('events/delete', 'APIEventsController@delete')->name('events.delete');
+
+
+    Route::get('mobile-charge', 'APIChargeHistoryController@index')->name('mobile-charge.index');
+    Route::post('mobile-charge/create', 'APIChargeHistoryController@create')->name('mobile-charge.create');
+    Route::post('mobile-charge/edit', 'APIChargeHistoryController@edit')->name('mobile-charge.edit');
 });

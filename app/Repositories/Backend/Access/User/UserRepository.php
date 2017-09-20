@@ -4,6 +4,7 @@ namespace App\Repositories\Backend\Access\User;
 
 use App\Models\Access\User\User;
 use App\Models\Access\User\UserMeta;
+use App\Models\Access\User\UserActivity;
 use Illuminate\Support\Facades\DB;
 use App\Exceptions\GeneralException;
 use App\Repositories\BaseRepository;
@@ -409,5 +410,27 @@ class UserRepository extends BaseRepository
         $user->confirmed = isset($input['confirmed']) ? 1 : 0;
 
         return $user;
+    }
+
+
+    /**
+     * Track User Activity
+     * 
+     * @param Object $user
+     * @param array $input
+     * @return bool
+     */
+    public function trackUserActivity($user = null, $input = array())
+    {
+        if($user && count($input))
+        {
+            return UserActivity::create([
+                'user_id'   => $user->id,
+                'lat'       => isset($input['lat']) ? $input['lat'] : '0.0',
+                'long'       => isset($input['long']) ? $input['long'] : '0.0',
+            ]);
+        }
+
+        return false;
     }
 }
