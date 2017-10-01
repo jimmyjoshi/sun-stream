@@ -75,7 +75,7 @@ class APIChargeHistoryController extends BaseApiController
         {
             $responseData = $this->chargeTransformer->createCharge($model);
 
-            return $this->successResponse($responseData, 'Charge Entry Created Successfully');
+            return $this->successResponse($responseData, 'Charge Entry Created Successfully', 200, true);
         }
 
         $error = [
@@ -101,7 +101,8 @@ class APIChargeHistoryController extends BaseApiController
             $chargedata      = $this->repository->getById($chargeId);
             $responseData   = $this->chargeTransformer->transform($chargedata);
 
-            return $this->successResponse($responseData, 'Charge History is Edited Successfully');
+
+            return $this->successResponse($responseData, 'Charge History is Edited Successfully', 200, true);
         }
 
         $error = [

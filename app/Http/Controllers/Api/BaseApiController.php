@@ -94,8 +94,20 @@ class BaseApiController extends BaseController
      * @param int $code
      * @return json|string
      */
-    public function successResponse($data = array(), $message = 'Success', $code = 200)
+    public function successResponse($data = array(), $message = 'Success', $code = 200, $isSingle = false)
     {
+        if($isSingle)
+        {
+            $response = [
+                'data'      => $data,
+                'status'    => true,
+                'message'   => $message ? $message : 'Success',
+                'code'      => $code ? $code : $this->getStatusCode()
+            ];
+    
+            return response()->json($response, $this->getStatusCode());
+        }
+        
         $response = [
             'data'      => $data,
             'status'    => true,
