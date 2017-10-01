@@ -98,10 +98,9 @@ class APIChargeHistoryController extends BaseApiController
 
         if($model)
         {
-            $chargedata      = $this->repository->getById($chargeId);
+            $chargedata     = $this->repository->getById($chargeId);
             $responseData   = $this->chargeTransformer->transform($chargedata);
-
-
+            
             return $this->successResponse($responseData, 'Charge History is Edited Successfully', 200, true);
         }
 

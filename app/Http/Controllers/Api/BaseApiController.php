@@ -96,18 +96,6 @@ class BaseApiController extends BaseController
      */
     public function successResponse($data = array(), $message = 'Success', $code = 200, $isSingle = false)
     {
-        if($isSingle)
-        {
-            $response = [
-                'data'      => $data,
-                'status'    => true,
-                'message'   => $message ? $message : 'Success',
-                'code'      => $code ? $code : $this->getStatusCode()
-            ];
-    
-            return response()->json($response, $this->getStatusCode());
-        }
-        
         $response = [
             'data'      => $data,
             'status'    => true,
@@ -115,8 +103,8 @@ class BaseApiController extends BaseController
             'code'      => $code ? $code : $this->getStatusCode()
         ];
 
-        return response()->json([
-            (object)$response],
+        return response()->json(
+            (object)$response,
             $this->getStatusCode()  
         );
     }
