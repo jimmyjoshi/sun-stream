@@ -63,6 +63,18 @@ class AdminChargeController extends Controller
     }
 
     /**
+     * Event Listing 
+     * 
+     * @return \Illuminate\View\View
+     */
+    public function show($id)
+    {
+        return view($this->repository->setAdmin(true)->getModuleView('listView'))->with([
+            'repository' => $this->repository
+        ]);
+    }
+
+    /**
      * Event View
      * 
      * @return \Illuminate\View\View

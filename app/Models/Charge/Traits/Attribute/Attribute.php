@@ -3,7 +3,7 @@
 /**
  * Trait Attribute
  *
- * @author Justin Bevan justin@smokerschoiceusa.com
+ * @author Anuj Jaha
  */
 
 use File;
@@ -24,6 +24,8 @@ trait Attribute
 		{
 			$id = hasher()->encode($this->id);
 		}
+
+		return '';
 		return '<a href="'.route($prefix .'.'. $routes->editRoute, $id).'" class="btn btn-xs btn-primary"><i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Edit"></i></a> ';
 	}
 

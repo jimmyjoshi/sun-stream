@@ -72,6 +72,13 @@
             </li>
             @endauth
 
+            <li class="{{ active_class(Active::checkUriPattern('admin/charge')) }}">
+                <a href="{{ route('admin.charge.index') }}">
+                    <i class="fa fa-circle-o"></i>
+                    <span>User Charge History</span>
+                </a>
+            </li>
+
             <li class="{{ active_class(Active::checkUriPattern('admin/signup-google-map')) }}">
                 <a href="{{ route('admin.map.signup-google-map') }}">
                     <i class="fa fa-circle-o"></i>
